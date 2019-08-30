@@ -1,3 +1,11 @@
+/*
+ #define rte_pktmbuf_mtod_offset
+ #define rte_pktmbuf_mtod
+ #define rte_pktmbuf_data_len
+ #define rte_pktmbuf_pkt_len
+*/
+ */
+
 #include <stdint.h>
 #include <rte_config.h>
 #include <rte_eal.h>
@@ -131,6 +139,15 @@ lcore_main(void)
             //
             // Todo тут что-то сделать
             //
+
+            for (int j = 0; j < nb_rx; ++j) {
+                char *string; // указатель на строку с данными
+                if (bufs[j] != NULL) { // проверяем, надо ли что-то делать с этим
+                    rte_pktmbuf_mtod(bufs[j], string, sizeof(char));
+;
+                }
+                system("pause");
+            }
 
             /* Send burst of TX packets, to second port of pair. */
             const uint16_t nb_tx = rte_eth_tx_burst(port, 0,
